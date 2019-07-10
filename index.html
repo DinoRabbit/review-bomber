@@ -11,18 +11,42 @@
 	</head>
 	<body>
 		<script src = "Style/scripts/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 		<script src = "Style/bootstrap/js/bootstrap.min.js"></script>
+		
+		<script>
+			$(document).ready(function() {
+				$("#recent").load('Scripts/recent.php');
+				$("#userlogin").load('Scripts/cookies.php');
+			});
+			
+			$('#loginform').ready(function() {
+				$('#loginform').submit(function(e) {
+					e.preventDefault();
+					$.get("Scripts/users.php", { username:$("#username").val(), password:$("#password").val() }, function(data){
+						var result = (data == "Error");
+						if(result)
+							$(".alert").show();
+
+						else
+							window.location.reload();
+					});
+				});
+			});
+		</script>
 	
 		<div class = "top">
-			<div class = "row">
-				<div class = "col-md-2 logo">
-					<img src = "Images/logo.png" />
-				</div>
-				<div class = "col-md-8">
-					<h1 class = "headline">GaMeRs RiSe Up!!!!!!!one1111</h1>
-				</div>
-				<div class = "col-md-2">
-					<img style = "border-radius: 50%; float: right;" src = "Images/DinoRabbitSmol.png" />
+			<div class = "container-fluid">
+				<div class = "row">
+					<div class = "col-md-2 logo">
+						<img src = "Images/logo.png" />
+					</div>
+					<div class = "col-md-8">
+						<h1 class = "headline">GaMeRs RiSe Up!!!!!!!one1111</h1>
+					</div>
+					<div class = "col-md-2">
+						<img style = "border-radius: 50%; float: right;" src = "Images/DinoRabbitSmol.png" />
+					</div>
 				</div>
 			</div>
 			
@@ -41,54 +65,35 @@
 					<li class = "nav-item"><a class = "nav-link" href = "#">Games</a></li>
 					<li class = "nav-item"><a class = "nav-link" href = "#">Add</a></li>
 				</ul>
-				<span id="userlogin">
-					<button type="button" class = "btn btn-info" data-toggle="modal" data-target="#loginmodal" style="margin:5px;">Login</button>
-					<button type="button" class = "btn btn-primary">Sign Up</button>
+				<span id="userlogin" style = "color:white;">
 				</span>
 			</div>
 		</nav>
 		<br/><br/>
-
-		<div class = "row">
-			<div class = "col-md-3">
-			</div>
-			<div class = "col-md-7">
-				<h1>Welcome to Review Bomber!</h1>
-				<br/>
-				<p>Hello, my name is DinoRabbit, a friendly abomination of nature.  You can see a picture of me way up in the corner there. 
-				A little bit about myself, I'm a Software Engineer, I studied for five years in University and got my Bachelor's of Science degree. 
-				As I've graduated from school, I've continued my pursuit in learning more programming languages, techniques, and theory. In this
-				pursuit, I've been learning about web design, particularly server technologies, javascript, PHP, etc. This site is my first project
-				that I've worked on entirely on my own, all of the programming done exclusively by me. As of now, this is only a sort of pet project
-				that I wanted to build as a way of learning how to learn web design in terms of page layout, server scripting, and javascript
-				programming. If anyone ever sees this, I hope you like my work.</p>
-				<br/>
-				<p>The goal of this site is to hand power to gamers and to help inform those who may be unaware of the malicious practices of publishers.
-				Here, you'll find the ability to add games from publishers to our library as well as being able to review those games and the ones added by
-				other visitors.  The idea is to review bomb the shit out of games implementing greedy practices like microtransactions, P2W elements, malicious
-				DLC, or whatever else you can think of.  Publishers can often be major assholes to their customers, and we often don't have much of a voice
-				when trying to speak up about our complaints.  The goal of Review Bomber is to let gamers know when a publisher is being a son of a bitch.</p>
-			</div>
-			<div class = "col-md-2">
-				<div id = "recent">
-					<p>Recently Bombed Games</p>
-					
-					<img src="Images/Games/shenmue3.png" class="game-img-icon">
-					<br />
-					<button type="button" class="btn btn-success" style="margin:5px;">View</button>
-					<button type="button" class="btn btn-primary">Review</button>
-					<br />
-					<img src="Images/Games/borderlands3.png" class="game-img-icon">
-					<br />
-					<button type="button" class="btn btn-success" style="margin:5px;">View</button>
-					<button type="button" class="btn btn-primary">Review</button>
-					<br />
-					<img src="Images/Games/metroexodus.png" class="game-img-icon">
-					<br />
-					<button type="button" class="btn btn-success" style="margin:5px;">View</button>
-					<button type="button" class="btn btn-primary">Review</button>
-					
-					
+		<div class="container-fluid">
+			<div class = "row">
+				<div class = "col-md-3" id="test">
+				</div>
+				<div class = "col-md-7">
+					<h1>Welcome to Review Bomber!</h1>
+					<br/>
+					<p>Hello, my name is DinoRabbit, a friendly abomination of nature.  You can see a picture of me way up in the corner there. 
+					A little bit about myself, I'm a Software Engineer, I studied for five years in University and got my Bachelor's of Science degree. 
+					As I've graduated from school, I've continued my pursuit in learning more programming languages, techniques, and theory. In this
+					pursuit, I've been learning about web design, particularly server technologies, javascript, PHP, etc. This site is my first project
+					that I've worked on entirely on my own, all of the programming done exclusively by me. As of now, this is only a sort of pet project
+					that I wanted to build as a way of learning how to learn web design in terms of page layout, server scripting, and javascript
+					programming. If anyone ever sees this, I hope you like my work.</p>
+					<br/>
+					<p>The goal of this site is to hand power to gamers and to help inform those who may be unaware of the malicious practices of publishers.
+					Here, you'll find the ability to add games from publishers to our library as well as being able to review those games and the ones added by
+					other visitors.  The idea is to review bomb the shit out of games implementing greedy practices like microtransactions, P2W elements, malicious
+					DLC, or whatever else you can think of.  Publishers can often be major assholes to their customers, and we often don't have much of a voice
+					when trying to speak up about our complaints.  The goal of Review Bomber is to let gamers know when a publisher is being a son of a bitch.</p>
+				</div>
+				<div class = "col-md-2">
+					<div id = "recent">
+					</div>
 				</div>
 			</div>
 		</div>
@@ -104,7 +109,7 @@
 				<div class="modal-content">
 					<div class="modal-body">
 						<img src="Images/Users/user.png" class="profile-img">
-						<form role="form">
+						<form id="loginform" role="form">
 							<div class="form-group">
 								<input type="text" class="form-control" id="username" placeholder="Username">
 							</div>
@@ -113,6 +118,10 @@
 							</div>
 							<button type="submit" class="btn btn-primary" style="width:100%;">Login</button>
 						</form>
+						<br />
+						<div class = "alert alert-danger alert-dismissable" style="display:none;">
+							Username or Password is incorrect!
+						</div>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -120,8 +129,5 @@
 				</div>
 			</div>
 		</div>
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 	</body>
 </html>
